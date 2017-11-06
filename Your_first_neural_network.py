@@ -139,7 +139,7 @@ val_features, val_targets = features[-60*24:], targets[-60*24:]
 # 
 #   
 
-# In[118]:
+# In[9]:
 
 
 class NeuralNetwork(object):
@@ -238,7 +238,7 @@ class NeuralNetwork(object):
         return final_outputs
 
 
-# In[37]:
+# In[10]:
 
 
 def MSE(y, Y):
@@ -249,7 +249,7 @@ def MSE(y, Y):
 # 
 # 运行这些单元测试，检查你的网络实现是否正确。这样可以帮助你确保网络已正确实现，然后再开始训练网络。这些测试必须成功才能通过此项目。
 
-# In[119]:
+# In[11]:
 
 
 import unittest
@@ -334,15 +334,15 @@ unittest.TextTestRunner().run(suite)
 # 
 # 隐藏节点越多，模型的预测结果就越准确。尝试不同的隐藏节点的数量，看看对性能有何影响。你可以查看损失字典，寻找网络性能指标。如果隐藏单元的数量太少，那么模型就没有足够的空间进行学习，如果太多，则学习方向就有太多的选择。选择隐藏单元数量的技巧在于找到合适的平衡点。
 
-# In[136]:
+# In[30]:
 
 
 import sys
 
 ### Set the hyperparameters here ###
-iterations = 700
-learning_rate = 0.03
-hidden_nodes = 120
+iterations = 3000
+learning_rate = 0.5
+hidden_nodes = 15
 output_nodes = 1
 
 N_i = train_features.shape[1]
@@ -366,7 +366,7 @@ for ii in range(iterations):
     losses['validation'].append(val_loss)
 
 
-# In[137]:
+# In[31]:
 
 
 st = 20
@@ -380,7 +380,7 @@ _ = plt.ylim()
 # 
 # 使用测试数据看看网络对数据建模的效果如何。如果完全错了，请确保网络中的每步都正确实现。
 
-# In[138]:
+# In[32]:
 
 
 fig, ax = plt.subplots(figsize=(8,4))
@@ -407,6 +407,9 @@ _ = ax.set_xticklabels(dates[12::24], rotation=45)
 # 
 # #### 请将你的答案填写在下方
 # 
-# 模型整体在比较平滑的时候，感觉预测得还是不错的，节假日预测得也不错
-# 但在数据有突变的时候，预测就差强人意了
+# * 模型整体在比较平滑的时候，感觉预测得还是不错的，节假日预测得也不错
+# * 但在数据有突变的时候，预测就差强人意了
+# 
+# 更新：
+# * 我原以为隐藏层越多越好，但好像训练次数影响更大啊
 # 
